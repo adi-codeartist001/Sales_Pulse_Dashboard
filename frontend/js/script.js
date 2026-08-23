@@ -1,9 +1,6 @@
-// ⚠️ Set this to YOUR deployed backend URL after you deploy it (Step 4/5 in README).
-// For local testing this is usually http://127.0.0.1:5000
+
 const base_url = 'http://127.0.0.1:5000';
 
-// Sample data (from database/schema.sql) only exists for these dates.
-// Default the picker to the richest one so the dashboard is never empty on load.
 const DEFAULT_DATE = '2026-03-15';
 
 const statusBar = document.getElementById('statusBar');
@@ -117,6 +114,28 @@ function renderDailyLeaderboard(leaderboard) {
             <td>${fmtCur(rep.mtd_revenue)}</td>
         `;
         tableBody.appendChild(row);
+    });
+}
+
+function renderTopProducts(products) {
+    const list = document.getElementById('topProductsList');
+    list.innerHTML = '';
+
+    if (!products || products.length === 0) {
+        list.innerHTML = `<li class="empty-state">No product sales logged for this period yet.</li>`;
+        return;
+    }
+
+    products.forEach((p) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <div>
+                <div class="product-name">${p.product}</div>
+                <span class="product-sales">${p.no_of_sales} orders</span>
+            </div>
+            <span class="product-revenue">₹${Number(p.total_revenue).toLocaleString('en-IN')}</span>
+        `;
+        list.appendChild(li);
     });
 }
 
@@ -238,9 +257,11 @@ async function getDashboard() {
         const leaderboard = targetData.sales_rep_metrics;
         const dayWiseGraph = targetData.daily_metrics;
         const monthWiseMetrics = targetData.month_metrics;
+        const topProducts = targetData.top_products;
 
         renderKpiCards(kpiCards);
         renderDailyLeaderboard(leaderboard);
+        renderTopProducts(topProducts);
         renderDayWiseGraph(dayWiseGraph);
         renderMonthWise3D(monthWiseMetrics);
 
