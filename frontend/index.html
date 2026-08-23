@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SalesPulse — Daily Ledger</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <nav>
+        <div class="brand">
+            <span class="brand-mark">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 14L7 8L11 11L18 3" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="g1" x1="2" y1="14" x2="18" y2="3">
+                            <stop offset="0" stop-color="#5B3FE0"/>
+                            <stop offset="1" stop-color="#FF6B4A"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </span>
+            <div class="brand-text">
+                <strong>SalesPulse</strong>
+                <span>Daily performance ledger</span>
+            </div>
+        </div>
+        <div class="nav-controls">
+            <button id="date_btn">Pick a date</button>
+            <input type="date" id="date_picker" min="2026-01-01" max="2026-05-31">
+        </div>
+    </nav>
+
+    <div id="statusBar" class="status-bar" hidden></div>
+
+    <main>
+        <section id="kpiCards">
+            <div id="today" class="kpi-card kpi-violet" style="--delay:0ms"></div>
+            <div id="thisMonth" class="kpi-card kpi-emerald" style="--delay:80ms"></div>
+            <div id="prevMonthSameDay" class="kpi-card kpi-sky" style="--delay:160ms"></div>
+            <div id="prevMonth" class="kpi-card kpi-coral" style="--delay:240ms"></div>
+        </section>
+
+        <section id="employee">
+            <h3>Daily leaderboard</h3>
+            <table id="metrics-table">
+                <thead>
+                    <tr>
+                        <th>Sales Rep</th>
+                        <th>TDY Sales</th>
+                        <th>TDY Revenue</th>
+                        <th>MTD Sales</th>
+                        <th>MTD Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- JavaScript will insert rows here -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="graphs">
+            <div id="dayRev" class="panel">
+                <h3>Daywise revenue</h3>
+                <canvas id="daywiseRev"></canvas>
+            </div>
+            <div id="daySales" class="panel">
+                <h3>Daywise sales</h3>
+                <canvas id="daywiseSale"></canvas>
+            </div>
+            <div id="month" class="panel">
+                <h3>Monthwise summary</h3>
+                <div id="monthwise3d" class="bar3d-scene"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js" type="module"></script>
+
+</body>
+</html>
