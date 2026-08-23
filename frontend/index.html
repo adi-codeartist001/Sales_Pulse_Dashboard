@@ -40,28 +40,37 @@
 
     <main>
         <section id="kpiCards">
-            <div id="today" class="kpi-card kpi-violet" style="--delay:0ms"></div>
+            <div id="today" class="kpi-card kpi-featured" style="--delay:0ms"></div>
             <div id="thisMonth" class="kpi-card kpi-emerald" style="--delay:80ms"></div>
             <div id="prevMonthSameDay" class="kpi-card kpi-sky" style="--delay:160ms"></div>
             <div id="prevMonth" class="kpi-card kpi-coral" style="--delay:240ms"></div>
         </section>
 
-        <section id="employee">
-            <h3>Daily leaderboard</h3>
-            <table id="metrics-table">
-                <thead>
-                    <tr>
-                        <th>Sales Rep</th>
-                        <th>TDY Sales</th>
-                        <th>TDY Revenue</th>
-                        <th>MTD Sales</th>
-                        <th>MTD Revenue</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- JavaScript will insert rows here -->
-                </tbody>
-            </table>
+        <section id="middleRow">
+            <div id="employee">
+                <h3>Daily leaderboard</h3>
+                <table id="metrics-table">
+                    <thead>
+                        <tr>
+                            <th>Sales Rep</th>
+                            <th>TDY Sales</th>
+                            <th>TDY Revenue</th>
+                            <th>MTD Sales</th>
+                            <th>MTD Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JavaScript will insert rows here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="topProducts">
+                <h3>Top products <span class="panel-sub">This month</span></h3>
+                <ul id="topProductsList">
+                    <!-- JavaScript will insert items here -->
+                </ul>
+            </div>
         </section>
 
         <section id="graphs">
