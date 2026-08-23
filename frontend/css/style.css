@@ -220,6 +220,20 @@ nav {
 .kpi-sky     { --card-accent: var(--sky); }
 .kpi-coral   { --card-accent: var(--coral); }
 
+/* Featured card — the one number that matters most, called out in dark ink
+   so the eye lands there first (mirrors how a good ops dashboard leads with
+   "today's number" before anything else). */
+.kpi-featured {
+  background: radial-gradient(circle at 20% 0%, rgba(91, 63, 224, 0.35), transparent 60%), linear-gradient(160deg, #1B1E2B, #14171F);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.kpi-featured::before { opacity: 0.9; background: linear-gradient(135deg, var(--coral), transparent 60%); }
+.kpi-featured .kpi-eyebrow { color: rgba(255, 255, 255, 0.6); }
+.kpi-featured .kpi-dot { background: var(--coral); box-shadow: 0 0 0 4px rgba(255, 107, 74, 0.25); }
+.kpi-featured .kpi-figure { color: #fff; }
+.kpi-featured .kpi-figure small { color: rgba(255, 255, 255, 0.45); }
+.kpi-featured .kpi-sub { color: var(--coral); }
+
 .kpi-eyebrow {
   display: flex;
   align-items: center;
@@ -264,7 +278,14 @@ nav {
   color: var(--card-accent, var(--violet));
 }
 
-/* ---------- Leaderboard ---------- */
+/* ---------- Middle row: leaderboard + top products ---------- */
+
+#middleRow {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: var(--gap);
+  align-items: stretch;
+}
 
 #employee {
   background: var(--surface);
@@ -275,6 +296,56 @@ nav {
   box-shadow: var(--shadow-card);
   padding: 24px 26px 10px;
   animation: riseIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+/* Dark side panel, deliberately echoing the featured KPI card's palette so
+   the two "important" surfaces on the page read as a matched pair. */
+#topProducts {
+  background: linear-gradient(160deg, #1B1E2B, #14171F);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 24px 22px;
+  animation: riseIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+  display: flex;
+  flex-direction: column;
+}
+
+#topProducts h3 { color: #fff; display: flex; align-items: baseline; gap: 8px; }
+.panel-sub { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; color: rgba(255,255,255,0.4); text-transform: none; letter-spacing: 0; }
+
+#topProductsList { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+
+#topProductsList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  animation: riseIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+#topProductsList li:last-child { border-bottom: none; }
+#topProductsList li:nth-child(1) { animation-delay: 0.05s; }
+#topProductsList li:nth-child(2) { animation-delay: 0.10s; }
+#topProductsList li:nth-child(3) { animation-delay: 0.15s; }
+#topProductsList li:nth-child(4) { animation-delay: 0.20s; }
+#topProductsList li:nth-child(5) { animation-delay: 0.25s; }
+#topProductsList li:nth-child(6) { animation-delay: 0.30s; }
+#topProductsList li:nth-child(7) { animation-delay: 0.35s; }
+#topProductsList li:nth-child(8) { animation-delay: 0.40s; }
+
+.product-name { font-family: var(--font-body); font-weight: 600; font-size: 13.5px; color: #fff; }
+.product-sales { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); display: block; margin-top: 2px; }
+.product-revenue {
+  font-family: var(--font-mono); font-weight: 600; font-size: 12.5px;
+  color: #14171F; background: #fff; border-radius: 999px; padding: 4px 11px; flex-shrink: 0;
+}
+#topProductsList .empty-state { color: rgba(255,255,255,0.4); text-align: center; padding: 20px 0; width: 100%; font-family: var(--font-body); }
+
+@media (max-width: 900px) {
+  #middleRow { grid-template-columns: 1fr; }
 }
 
 #metrics-table { width: 100%; border-collapse: collapse; }
